@@ -5,11 +5,13 @@ const burgerMenu = document.querySelector('.menu');
 const cartDetail = document.querySelector('.product-detail');
 const cartIcon = document.querySelector('.navbar-shopping-cart');
 const cardsContainer = document.querySelector('.cards-container');
+const numberCart = document.querySelector('.quantity-cart');
+const cartContainer = document.querySelector('.container-products-cart');
+const total = document.querySelector('.total');
 
 
 const productList = [];
 const cartProducts = [];
-
 
 function pushProducts(arr) {
     arr.push({
@@ -62,11 +64,12 @@ function pushProducts(arr) {
 pushProducts(productList);
 
 function showProducts(arr) {
-    arr.forEach((product) => {
+    arr.forEach((product, i) => {
 
         //Creación del div principal.
         const divProduct = document.createElement('div');
         divProduct.classList.add('product-card');
+        divProduct.setAttribute('data-id', i)
 
         //Creación de la imagen principal de la card.
         const imagenProduct = document.createElement('img');
@@ -81,8 +84,10 @@ function showProducts(arr) {
         //Creación de la información del producto.
         const divPriceName = document.createElement('div');
         const pPrice = document.createElement('p');
-        pPrice.innerText = '$' + product.price;
+        pPrice.classList.add('price');
+        pPrice.innerText = product.price;
         const pName = document.createElement('p');
+        pName.classList.add('name');
         pName.innerText = product.name;
 
         //Se añade los textos de la card a su contenedor.
@@ -111,27 +116,123 @@ function showProducts(arr) {
         cardsContainer.appendChild(divProduct)
 
     })
+
+    numberCart.innerHTML = cartProducts.length;
+
+    showCart()
 }
 
 document.addEventListener('DOMContentLoaded', showProducts(productList));
 
-cardsContainer.addEventListener('click', (e) => {
+cardsContainer.addEventListener('click', addCart)
+
+function addCart(e) {
 
     const btnCart = e.target.classList.contains('cart');
 
     if (btnCart) {
-        const productSelect = e.target.parentElement.parentElement.parentElement
+        const productSelected = e.target.parentElement.parentElement.parentElement;
+        const idProduct = parseInt(productSelected.getAttribute('data-id'));
 
-        console.log(productSelect)
-        /*
-        newProductCart = {
-            image: productSelect.querySelector('.product-img').src;
-            name: 
+        const productVerified = cartProducts.find((element) => {
+            return idProduct === element.id
+        })
+
+        if (productVerified == undefined) {
+            newProductCart = {
+                image: productSelected.querySelector('.product-img').src,
+                name: productSelected.querySelector('.name').textContent,
+                price: parseFloat(productSelected.querySelector('.price').textContent),
+                id: idProduct
+            }
+
+            cartProducts.push(newProductCart);
+
+            Swal.fire(
+                'Agregado exitosmente',
+                '',
+                'success'
+            );
+
+            numberCart.innerHTML = cartProducts.length
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'El producto ya existe en el carrito!'
+            })
         }
-        */
 
     }
-})
+
+    showCart()
+    totalCart();
+}
+
+function showCart() {
+    cartContainer.innerHTML = ``;
+
+    cartProducts.forEach((element, i) => {
+        const divPrincipal = document.createElement('div');
+        divPrincipal.classList.add('shopping-cart');
+        divPrincipal.setAttribute('data-id', i);
+
+        const contenedorImage = document.createElement('figure');
+
+        const imagenProduct = document.createElement('img');
+        imagenProduct.src = element.image;
+        imagenProduct.setAttribute('alt', element.name);
+
+        contenedorImage.appendChild(imagenProduct);
+
+        const pName = document.createElement('p');
+        pName.textContent = element.name;
+
+        const pPrice = document.createElement('p');
+        pPrice.innerText = '$ '
+        const spanPrice = document.createElement('span');
+        spanPrice.textContent = element.price;
+
+        pPrice.appendChild(spanPrice)
+
+        const imgDelete = document.createElement('img');
+        imgDelete.src = './icons/icon_close.png'
+        imgDelete.classList.add('product-delete');
+        imgDelete.setAttribute('alt', 'delete');
+
+        divPrincipal.append(contenedorImage, pName, pPrice, imgDelete);
+
+        cartContainer.appendChild(divPrincipal);
+
+        totalCart();
+    })
+}
+
+function totalCart() {
+
+    let suma = 0;
+
+    cartProducts.forEach((product) => {
+        suma += product.price
+    })
+    total.innerText = suma
+}
+
+cartContainer.addEventListener('click', deleteProduct);
+
+function deleteProduct(e) {
+    const btnDelete = e.target.classList.contains('product-delete');
+
+    if (btnDelete) {
+        const productSelected = e.target.parentElement;
+        console.log()
+
+        cartProducts.splice(parseInt(productSelected.getAttribute('data-id')), 1);
+    }
+
+    showCart()
+    totalCart()
+    numberCart.innerHTML = cartProducts.length;
+}
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 

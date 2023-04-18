@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>YardSale</title>
 </head>
 
@@ -46,7 +47,7 @@
                 <li class="navbar-email">camilayokoo@gmail.com</li>
                 <li class="navbar-shopping-cart">
                     <img src="./icons/icon_shopping_cart.svg" alt="cart">
-                    <div>2</div>
+                    <div class="quantity-cart">0</div>
                 </li>
             </ul>
         </div>
@@ -112,39 +113,26 @@
             <p class="title">My order</p>
         </div>
         <div class="my-order-content">
-            <div class="shopping-cart">
-                <figure>
-                    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30.00</p>
-                <img src="./icons/icon_close.png" alt="delete" class="product-delete">
-            </div>
-            <div class="shopping-cart">
-                <figure>
-                    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30.00</p>
-                <img src="./icons/icon_close.png" alt="delete" class="product-delete">
-            </div>
-            <div class="shopping-cart">
-                <figure>
-                    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30.00</p>
-                <img src="./icons/icon_close.png" alt="delete" class="product-delete" -id>
+            <div class="container-products-cart">
+
+                <!-- <div class="shopping-cart">
+                    <figure>
+                        <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="bike">
+                    </figure>
+                    <p>Bike</p>
+                    <p>$30.00</p>
+                    <img src="./icons/icon_close.png" alt="delete" class="product-delete">
+                </div>-->
             </div>
 
             <div class="order">
                 <p>
                     <span>Total</span>
                 </p>
-                <p>$560.00</p>
+                <p>$
+                    <span class="total">0</span>
+                </p>
             </div>
 
             <button class="primary-button">

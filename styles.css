@@ -207,10 +207,10 @@ nav {
     box-sizing: border-box;
     position: absolute;
     background-color: var(--white);
-    right: 0;
-    top: 500px;
-    height: 480px;
+    right: 5px;
+    top: 59px;
     border-radius: 10px;
+    box-shadow: 14px 14px 20px 0 rgba(20, 20, 20, 0.3);
 }
 
 .title-container {
@@ -297,6 +297,7 @@ nav {
     font-size: var(--md);
     font-weight: bold;
     height: 50px;
+    margin-bottom: 20px;
 }
 
 .add-to-cart-button {
@@ -306,14 +307,11 @@ nav {
 }
 
 .oculto-shopping-cart {
-    top: -200px;
-    transform: translateY(-300px);
-    transition: transform 300ms;
+    display: none;
 }
 
 .activo-shopping-cart {
-    transform: translateY(261px);
-    transition: transform 300ms;
+    display: block
 }
 
 /* cards */
