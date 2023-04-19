@@ -134,9 +134,7 @@ function toggleDesktopMenu() {
 
     if (aside.classList.contains('activo-shopping-cart')) {
         aside.classList.remove('activo-shopping-cart');
-    }
-
-    if (!desktopMenu.classList.contains('inactive')) {
+    } else if (!desktopMenu.classList.contains('inactive')) {
         productDetail.classList.remove('activo-shopping-cart');
     }
 }
@@ -158,13 +156,9 @@ function toggleShoppingCart() {
 
     if (aside.classList.contains('activo-shopping-cart')) {
         productDetail.classList.remove('activo-shopping-cart');
-    }
-
-    if (mobileMenu.classList.contains('activo-menu-mobile')) {
+    } else if (mobileMenu.classList.contains('activo-menu-mobile')) {
         mobileMenu.classList.remove('activo-menu-mobile');
-    }
-
-    if (!desktopMenu.classList.contains('inactive')) {
+    } else if (!desktopMenu.classList.contains('inactive')) {
         desktopMenu.classList.add('inactive');
     }
 }
