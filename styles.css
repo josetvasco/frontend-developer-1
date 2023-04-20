@@ -346,10 +346,6 @@ aside {
 }
 
 .product-detail-close:hover {
-    background: var(--hospital-green);
-}
-
-.product-detail-close:hover {
     cursor: pointer;
 }
 

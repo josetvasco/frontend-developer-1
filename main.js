@@ -156,7 +156,6 @@ function toggleShoppingCart() {
 
     if (aside.classList.contains('activo-shopping-cart')) {
         productDetail.classList.remove('activo-shopping-cart');
-    } else if (mobileMenu.classList.contains('activo-menu-mobile')) {
         mobileMenu.classList.remove('activo-menu-mobile');
     } else if (!desktopMenu.classList.contains('inactive')) {
         desktopMenu.classList.add('inactive');
